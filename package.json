@@ -1,0 +1,25 @@
+{
+  "name": "local-notes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "e.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chillbuilds/local-notes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chillbuilds/local-notes/issues"
+  },
+  "homepage": "https://github.com/chillbuilds/local-notes#readme",
+  "dependencies": {
+    "electron": "^19.0.8",
+    "path": "^0.12.7"
+  }
+}
