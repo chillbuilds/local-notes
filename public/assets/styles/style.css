@@ -54,3 +54,7 @@
     text-decoration: none;
     cursor: pointer;
   }
+
+  #note-dir {
+    width: 80%;
+  }

@@ -26,9 +26,10 @@ if(dir.split('').length == 0){
         </script>
     `)
     $('.modal').attr('style', 'display:inline-block;')
+    dir = fs.readFileSync(path.join(__dirname,'../assets/text/dir.txt'), 'utf-8')
+    document.getElementById("note-dir").value = dir
 }else{
-    $('#note-dir').val = dir
-    
+    document.getElementById("note-dir").value = dir
 }
 
 
