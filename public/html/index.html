@@ -5,18 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>local notes</title>
-    <link rel="stylesheet" href="../styles/bootstrap.css">
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/bootstrap.css">
+    <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 <body>
 
+    <div class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id="modal-element"></p>
+        </div>
+    </div>
+
     <div class="container">
+        
+        <div class="row">
+            <div id="settings" class="col-12">
+                <span>note directory:</span> <input id="note-dir" type="text">
+            </div>
+        </div>
+        
         <div class="row">
             <div id="note-tray" class="col-3">
 
             </div>
             <div class="col-9">
-                    <textarea id="text-input" name="testy"></textarea>
+                    <textarea id="text-input"></textarea>
                 <div id="save">
                     <img class="icon" src="../assets/images/save.png">
                 </div>
@@ -24,7 +38,7 @@
         </div>
     </div>
 
-    <script src="../scripts/jquery.js"></script>
+    <script>window.$ = window.jQuery = require('jquery');</script>
     <script src="../scripts/script.js"></script>
 </body>
 </html>
