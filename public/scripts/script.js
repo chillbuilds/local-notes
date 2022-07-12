@@ -32,11 +32,10 @@ if(dir.split('').length == 0){
     document.getElementById("note-dir").value = dir
 }
 
-
-$('#myBtn').on('click', ()=>{
-    $('.modal').attr('style', 'display:inline-block;')
-})
-
 $('.close').on('click', ()=>{
     $('.modal').attr('style', 'display:none;')
+})
+
+$('#save').on('click', ()=>{
+    fs.writeFileSync(dir + $('#title').val(), $('#text-input').val())
 })

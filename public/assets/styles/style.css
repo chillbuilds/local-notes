@@ -56,5 +56,12 @@
   }
 
   #note-dir {
-    width: 80%;
+    width: 75%;
+  }
+
+  #title {
+    width: 100%;
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-bottom: 6px;
   }
