@@ -22,5 +22,8 @@
     "electron": "^19.0.8",
     "jquery": "^3.6.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "electron-packager": "^15.5.1"
   }
 }
