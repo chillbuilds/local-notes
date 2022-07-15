@@ -2,9 +2,17 @@
 
 Electron app to create, edit, tag, and delete local text files
 
+# built with
+* nodejs
+* electron
+* fs
+
+# how to deploy
+npm i
+npm start
 
 # to do
-* set/change local note directory
+* styling updates for note col
+* move note directory update to modal with "settings" button
 * tagging
-* note backup
-* uhh.. everything else also
+* s3 note backup
