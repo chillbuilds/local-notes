@@ -37,6 +37,8 @@ if(dir.split('').length <= 1){
 }
 
 function dirUpdate() {
+    $('#title').val('')
+    $('#text-input').val('')
     let valSplit = $('#note-dir').val().split('')
     if(valSplit[valSplit.length-1] == '/'){
         fs.writeFileSync(path.join(__dirname,'../assets/text/dir.txt'), $('#note-dir').val())
@@ -52,6 +54,7 @@ function dirUpdate() {
 function notePop() {
     $('#note-tray').html('')
     let fileArr = fs.readdirSync(dir)
+    // *sort
     for(var i = 0; i < fs.readdirSync(dir).length; i++) {
         if(fileArr[i].split('.')[fileArr[i].split('.').length-1] == 'txt'){
             if(i == fileArr.length-1){
