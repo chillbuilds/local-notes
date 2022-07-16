@@ -14,5 +14,7 @@ npm start
 # to do
 * styling updates for note col
 * move note directory update to modal with "settings" button
+* sort by name or date
+* add note summary to note tab
 * tagging
 * s3 note backup

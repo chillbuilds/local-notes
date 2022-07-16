@@ -47,26 +47,33 @@ function dirUpdate() {
 
 function notePop() {
     $('#note-tray').html('')
-    let files = fs.readdirSync(dir)
-    files.forEach(file => {
-        if(file.split('.')[file.split('.').length-1] == 'txt'){
-             $('#note-tray').append(`
-             <div class="note">${file.split('.')[0]}</div>
-             `)
+    let fileArr = fs.readdirSync(dir)
+    for(var i = 0; i < fs.readdirSync(dir).length; i++) {
+        if(fileArr[i].split('.')[fileArr[i].split('.').length-1] == 'txt'){
+            if(i == fileArr.length-1){
+                $('#note-tray').append(`
+                    <div class="note" id="note-${i+1}" style="border-bottom: none;">${fileArr[i].split('.')[0]}</div>
+                `)
+            }
+            else{
+                $('#note-tray').append(`
+                    <div class="note" id="note-${i+1}">${fileArr[i].split('.')[0]}</div>
+                `)
+            }
         }
-    })
+        }
     $('#note-tray').append(`
         <script>
             $('.note').on('click', function(e) {
                 $('#title').val($(e.target).text())
-                $('#text-input').html('')
-                let noteData = fs.readFileSync(dir+$(e.target).text()+'.txt', 'utf-8')
-                $('#text-input').val(noteData)
-                console.log(noteData)
-                console.log('text-input apparently updated 🤨')
+                $('#text-input').val(fs.readFileSync(dir+$(e.target).text()+'.txt', 'utf-8'))
+                $('.note').attr('style', 'background: rgba(0,0,0,0)')
+                $(this).attr('style', 'background: rgba(0,0,0,0.03); border-radius: 6px; padding: 10px 20px;')
+                console.log($(this).attr('id'))
             })
         </script>`)
 }
+
 $('#update').on('click', ()=>{
     dirUpdate()
 })
