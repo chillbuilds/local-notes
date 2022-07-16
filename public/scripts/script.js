@@ -5,7 +5,7 @@ const path = require('path')
 
 var dir = fs.readFileSync(path.join(__dirname,'../assets/text/dir.txt'), 'utf-8')
 
-if(dir.split('').length == 0){
+if(dir.split('').length <= 1){
     $('#modal-element').html(`
         <div style="text-align:center;">
             please enter note directory<br><br>
@@ -17,9 +17,13 @@ if(dir.split('').length == 0){
             let valSplit = $('#dir').val().split('')
             if(valSplit[valSplit.length-1] == '/'){
                 fs.writeFileSync(path.join(__dirname,'../assets/text/dir.txt'), $('#dir').val())
+                $('#note-dir').val($('#dir').val())
+                dirUpdate()
             }
             else{
                 fs.writeFileSync(path.join(__dirname,'../assets/text/dir.txt'), $('#dir').val()+'/')
+                $('#note-dir').val($('#dir').val())
+                dirUpdate()
             }
             $('.modal').attr('style', 'display:none;')
         })
@@ -52,7 +56,7 @@ function notePop() {
         if(fileArr[i].split('.')[fileArr[i].split('.').length-1] == 'txt'){
             if(i == fileArr.length-1){
                 $('#note-tray').append(`
-                    <div class="note" id="note-${i+1}" style="border-bottom: none;">${fileArr[i].split('.')[0]}</div>
+                    <div class="note last" id="note-${i+1}" style="border-bottom: none;">${fileArr[i].split('.')[0]}</div>
                 `)
             }
             else{
@@ -68,8 +72,7 @@ function notePop() {
                 $('#title').val($(e.target).text())
                 $('#text-input').val(fs.readFileSync(dir+$(e.target).text()+'.txt', 'utf-8'))
                 $('.note').attr('style', 'background: rgba(0,0,0,0)')
-                $(this).attr('style', 'background: rgba(0,0,0,0.03); border-radius: 6px; padding: 10px 20px;')
-                console.log($(this).attr('id'))
+                $(this).attr('style', 'background: rgba(0,0,200,0.03); border-radius: 4px;')
             })
         </script>`)
 }

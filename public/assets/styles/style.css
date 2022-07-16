@@ -90,3 +90,7 @@ body {
     float: right;
     padding: 10px;
   }
+
+  .last {
+    border-bottom: none;
+  }
