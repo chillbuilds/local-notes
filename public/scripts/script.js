@@ -53,21 +53,34 @@ function dirUpdate() {
 
 function notePop() {
     $('#note-tray').html('')
-    let fileArr = fs.readdirSync(dir)
-    // *sort
-    for(var i = 0; i < fs.readdirSync(dir).length; i++) {
-        if(fileArr[i].split('.')[fileArr[i].split('.').length-1] == 'txt'){
+    let fileArr = []
+    fs.readdirSync(dir).forEach((file)=>{
+        if(file.split('.')[file.split('.').length-1] == 'txt'){
+            let stat = fs.statSync(dir + file)
+            fileArr.push({
+                title: file,
+                tags: 'test',
+                time: Math.floor(stat.mtimeMs),
+            })
+        }
+    })
+
+    // time sort (defaults to title sort)
+    fileArr.sort(function(a, b) {
+        return b.time - a.time
+    })
+
+    for(var i = 0; i < fileArr.length; i++) {
             if(i == fileArr.length-1){
                 $('#note-tray').append(`
-                    <div class="note last" id="note-${i+1}" style="border-bottom: none;">${fileArr[i].split('.')[0]}</div>
+                    <div class="note last" tags="${fileArr[i].tags}" time="${fileArr[i].time}" id="note-${i+1}" style="border-bottom: none;">${fileArr[i].title.split('.')[0]}</div>
                 `)
             }
             else{
                 $('#note-tray').append(`
-                    <div class="note" id="note-${i+1}">${fileArr[i].split('.')[0]}</div>
+                    <div class="note" tags="${fileArr[i].tags}" time="${fileArr[i].time}" id="note-${i+1}">${fileArr[i].title.split('.')[0]}</div>
                 `)
             }
-        }
         }
     $('#note-tray').append(`
         <script>
@@ -95,6 +108,27 @@ $('#save').on('click', ()=>{
     `)
     $('.modal').attr('style', 'display:inline-block;')
     notePop()
+})
+
+
+var saveCheck = false
+
+$('#text-input').on('keyup', ()=>{
+    if(saveCheck == false){
+        saveCheck = true
+        setTimeout(()=>{
+            console.log($('#title').val().split('').length)
+            if($('#title').val().split('').length > 0){
+                console.log('auto saved')
+                fs.writeFileSync(dir + $('#title').val() + '.txt', $('#text-input').val())
+            // v v v this is supurflous v v v
+                notePop()
+            }
+            saveCheck = false
+        }, 2000)
+    }else{
+
+    }
 })
 
 notePop()
