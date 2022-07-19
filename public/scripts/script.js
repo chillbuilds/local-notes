@@ -110,6 +110,22 @@ $('#save').on('click', ()=>{
     notePop()
 })
 
+$('#delete').on('click', ()=>{
+    $('#modal-element').html(`
+        <style>
+            .modal-btn {
+                text-align:center;
+                padding: 10px 20px;
+                background: rgba(0,0,0,0.4);
+                border-radius: 6px;
+            }
+        </style>
+        <div style="text-align:center;">Are you sure you want to delete this note?</div>
+        <span class="modal-btn"><img width="28" id="update" src="../assets/images/check.png"></span>
+        <span class="modal-btn">No</span>
+    `)
+    $('.modal').attr('style', 'display:inline-block;')
+})
 
 var saveCheck = false
 
